@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>GDRP_UA | OFFICIAL</title>
+    <style>
+        :root { --demon: #8a2be2; --bg: #000; --card: #080808; }
+        * { scroll-behavior: smooth; box-sizing: border-box; }
+
+        body { 
+            background: var(--bg); 
+            color: #eee; 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
+        
+        /* ПУЛЬСУЮЧІ ПАНЕЛІ ПО БОКАХ */
+        body::before, body::after {
+            content: ""; position: fixed; top: 0; width: 4px; height: 100%; 
+            background: var(--demon);
+            box-shadow: 0 0 25px var(--demon), 0 0 50px var(--demon); 
+            z-index: 100; animation: pulse 4s infinite ease-in-out;
+        }
+        body::before { left: 0; }
+        body::after { right: 0; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; box-shadow: 0 0 20px var(--demon); }
+            50% { opacity: 1; box-shadow: 0 0 40px var(--demon), 0 0 60px var(--demon); }
+        }
+
+        .glow-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            pointer-events: none; z-index: -1;
+            background: radial-gradient(circle at 50% -10%, rgba(138, 43, 226, 0.15) 0%, transparent 50%);
+        }
+
+        header { text-align: center; padding: 130px 0 90px 0; }
+        .logo { 
+            font-size: clamp(45px, 12vw, 90px); 
+            font-weight: 900; 
+            color: var(--demon); 
+            text-shadow: 0 0 40px var(--demon); 
+            letter-spacing: 18px; 
+            text-transform: uppercase; 
+            margin: 0; 
+        }
+        .subtitle { color: #333; font-size: 13px; margin-top: 20px; letter-spacing: 6px; text-transform: uppercase; font-weight: 800; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+
+        .section-title { 
+            border-left: 6px solid var(--demon); padding-left: 20px; text-transform: uppercase; 
+            font-size: 1.8em; letter-spacing: 4px; margin: 80px 0 40px 0; color: #fff;
+        }
+
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
+        .feature-card { 
+            background: var(--card); border: 1px solid #111; border-radius: 25px; 
+            padding: 40px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        .feature-card:hover { 
+            border-color: var(--demon); 
+            transform: translateY(-12px); 
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.15); 
+        }
+        .feature-card h3 { color: var(--demon); margin: 0 0 15px 0; font-size: 1.5em; text-transform: uppercase; }
+        .feature-card p { color: #777; font-size: 1.05em; line-height: 1.8; margin: 0; }
+
+        .btn { 
+            background: var(--demon); color: #fff; border: none; padding: 22px 60px; border-radius: 20px; 
+            font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 16px; letter-spacing: 2px; 
+            text-transform: uppercase; display: inline-block; text-decoration: none;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4); text-align: center;
+        }
+        .btn:hover { box-shadow: 0 0 50px var(--demon); transform: scale(1.05); }
+
+        .social-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .soc-btn { 
+            padding: 16px 35px; border-radius: 15px; text-decoration: none; color: #555; 
+            font-weight: bold; font-size: 13px; transition: 0.3s; border: 1px solid #111; background: #050505; 
+            letter-spacing: 2px;
+        }
+        .soc-btn:hover { border-color: var(--demon); color: #fff; background: #111; }
+
+        .download-zone { 
+            margin: 120px 0; text-align: center; padding: 100px 40px; 
+            background: linear-gradient(180deg, #050505 0%, #000 100%); 
+            border: 1px solid #111; border-radius: 50px;
+        }
+
+        .gmail-box { margin-top: 50px; color: #333; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .gmail-box span { color: var(--demon); }
+
+        footer { text-align: center; padding: 60px; color: #1a1a1a; font-size: 10px; letter-spacing: 5px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <header>
+        <div class="logo">GDRP_UA</div>
+        <p class="subtitle">Official Private Server</p>
+        <div style="margin-top: 60px;">
+            <a href="#download" class="btn">ГРАТИ ЗАРАЗ</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">НАШ СЕРВЕР</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Extreme Demons</h3>
+                <p>Ми спеціалізуємося на найскладнішому контенті. Проходь міфічні рівні та ставай справжньою легендою сервера.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Оцінка рівнів</h3>
+                <p>Наші модератори цінують креатив. Отримуй зірки та Rate за свої найкращі роботи в редакторі об'єктів.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Дружнє ком'юніті</h3>
+                <p>GDRP_UA — це місце, де всі гравці дружелюбні, а адміни завжди готові допомогти кожному учаснику.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">ПРИЄДНУЙСЯ ДО НАС</h2>
+        <div class="social-grid">
+            <a href="https://discord.gg/EbPPSdAUw" class="soc-btn" target="_blank">DISCORD</a>
+            <a href="https://t.me/GDRP_UA" class="soc-btn" target="_blank">TELEGRAM</a>
+            <a href="https://www.tiktok.com/@gdrp_ua?_r=1&_t=ZS-95ATYvR3ZKq" class="soc-btn" target="_blank">TIKTOK</a>
+        </div>
+
+        <div id="download" class="download-zone">
+            <h2 style="color: var(--demon); font-size: 3em; margin: 0 0 25px 0; text-transform: uppercase; letter-spacing: 5px; font-weight: 900;">ГОТОВИЙ ДО ВИКЛИКУ?</h2>
+            <p style="color: #444; margin-bottom: 60px; font-size: 1.1em; letter-spacing: 1px;">Завантажуй гру та приєднуйся до гри вже сьогодні.</p>
+            
+            <a href="https://www.dropbox.com/scl/fi/zzei7ql1glfeqblic48p2/GdRp.zip?rlkey=g0l6hafnd1yosdjvasld6tt4r&st=up9lp6ba&raw=1" class="btn" style="background: #fff; color: #000; margin: 15px;">DOWNLOAD PC</a>
+            <a href="https://www.dropbox.com/scl/fi/0i6k9bza4slucyma30svl/GdRp.apk?rlkey=ptd8sbkiwaxgpd809nkn8vxbv&st=i2vjwuh2&dl=1" class="btn" style="margin: 15px;">DOWNLOAD ANDROID</a>
+            
+            <div class="gmail-box">З ПИТАНЬ: <span>gdrp0ua@gmail.com</span></div>
+        </div>
+
+        <footer>© 2026 GDRP_UA Development Team</footer>
+    </div>
+
+</body>
+</html>
