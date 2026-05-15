@@ -15,19 +15,27 @@ function startSearch() {
     if (queryInput.includes("gdps") || queryInput.includes("kocmoc") || queryInput.includes("geometry") || queryInput.includes("gdrp") || queryInput.includes("nanste")) {
         openIframe('GDRP.html');
     } 
-    // 2. ПЕРЕВІРКА НА 11 ЛВЛ ТАНКІВ
-    else if (queryInput.includes("11") || queryInput.includes("оновлен") || queryInput.includes("maus") || queryInput.includes("маус") || queryInput.includes("taschenratte")) {
+    // 2. ПЕРЕВІРКА НА ТАЧКИ 2005 (NFS)
+    else if (queryInput.includes("тачк") || queryInput.includes("машин") || queryInput.includes("2005") || queryInput.includes("nfs") || queryInput.includes("most wanted") || queryInput.includes("bmw")) {
         openSite('maus');
     } 
-    // 3. ПЕРЕВІРКА НА ФАКТИ ПРО ЗАЗДАТЕЛЯ
-    else if (queryInput.includes("факт") || queryInput.includes("заздател") || queryInput.includes("автор") || queryInput.includes("розроб") || queryInput.includes("t22") || queryInput.includes("інтерес")) {
+    // 3. ПЕРЕВІРКА НА ЛІТО 2026
+    else if (queryInput.includes("літо") || queryInput.includes("лето") || queryInput.includes("2026") || queryInput.includes("черв") || queryInput.includes("лип")) {
         openSite('t22');
     } 
-    // 4. ПЕРЕВІРКА НА СВІТЛО ТА ОБСТРІЛИ (Нова логіка)
-    else if (queryInput.includes("світло") || queryInput.includes("обстріл") || queryInput.includes("ремонт") || queryInput.includes("напруг") || queryInput.includes("електр") || queryInput.includes("пк")) {
+    // 4. ПЕРЕВІРКА НА ТАНКОВУ РОЗМОВУ (ТТ, ЛТ, СТ)
+    else if (queryInput.includes("танк") || queryInput.includes("тт") || queryInput.includes("лт") || queryInput.includes("ст") || queryInput.includes("пт") || queryInput.includes("сау")) {
         openSite('acid');
     } 
-    // 5. ПОМИЛКА
+    // 5. ПЕРЕВІРКА НА ЧІТИ ГД
+    else if (queryInput.includes("чіт") || queryInput.includes("чит") || queryInput.includes("спам") || queryInput.includes("cheat")) {
+        openSite('gd-cheats');
+    }
+    // 6. ПЕРЕВІРКА НА МЕДІА
+    else if (queryInput.includes("стрім") || queryInput.includes("стрим") || queryInput.includes("медіа") || queryInput.includes("media")) {
+        openSite('kosmos-media');
+    }
+    // ПОМИЛКА
     else {
         errorDiv.style.display = "block";
     }
