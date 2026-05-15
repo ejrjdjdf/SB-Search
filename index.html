@@ -2,8 +2,25 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>KOCMOC BROWSER v1.0</title>
+    <title>SB Search // Secure Browser</title>
     <style>
+        /* ЕТАП 2: КОМФОРТНИЙ КАСТОМНИЙ СКРОЛЛБАР */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 10px;
+            border: 2px solid #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ffcc;
+        }
+
         body {
             background-color: #0b0f19;
             color: #ffffff;
@@ -14,43 +31,55 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Шапка браузера */
         .browser-top {
             width: 100%;
             background-color: #131926;
-            padding: 10px 20px;
+            padding: 12px 25px;
             display: flex;
             align-items: center;
             border-bottom: 1px solid #1f293d;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
         }
         .dots { display: flex; gap: 8px; margin-right: 20px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; transition: transform 0.2s; cursor: pointer; }
+        .dot:hover { transform: scale(1.2); }
         .dot.r { background: #ff5f56; }
         .dot.y { background: #ffbd2e; }
         .dot.g { background: #27c93f; }
 
         /* Головний контейнер пошуку */
         .search-container {
-            margin-top: 120px;
+            margin-top: 100px;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             text-align: center;
             padding: 20px;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Логотип */
+        /* ЕТАП 1: НОВА НАЗВА */
         .logo {
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #00ffcc, #ff0055);
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            background: linear-gradient(45deg, #00ffcc, #3399ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            filter: drop-shadow(0 0 15px rgba(0, 255, 204, 0.2));
+        }
+        
+        .sub-logo {
+            font-size: 12px;
+            color: #5f759e;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 35px;
         }
 
         /* Пошуковий рядок */
@@ -61,183 +90,194 @@
         }
         .search-input {
             width: 100%;
-            padding: 15px 20px;
+            padding: 16px 25px;
             font-size: 16px;
-            background-color: #171f30;
-            border: 2px solid #23304a;
+            background-color: #141b29;
+            border: 2px solid #1f293d;
             border-radius: 30px;
             color: #fff;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        
+        /* ЕТАП 2: Комфортна підсвітка при фокусі */
         .search-input:focus {
             border-color: #00ffcc;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+            background-color: #172030;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.25);
         }
+        
         .search-btn {
             position: absolute;
-            right: 5px;
-            top: 5px;
-            bottom: 5px;
+            right: 6px;
+            top: 6px;
+            bottom: 6px;
             background: #00ffcc;
             color: #0b0f19;
             border: none;
-            padding: 0 25px;
+            padding: 0 28px;
             font-weight: bold;
+            font-size: 14px;
             border-radius: 25px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: transform 0.1s, background-color 0.2s;
         }
-        .search-btn:hover { background: #ff0055; color: #fff; }
+        .search-btn:hover { background: #3399ff; color: #fff; }
+        .search-btn:active { transform: scale(0.95); }
 
         /* Помилка пошуку */
         .error-message {
             margin-top: 25px;
-            color: #ff3366;
-            font-weight: bold;
+            color: #ff4d6d;
+            font-size: 14px;
+            font-weight: 500;
             display: none;
-            background: rgba(255, 51, 102, 0.1);
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 51, 102, 0.3);
+            background: rgba(255, 77, 109, 0.08);
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 77, 109, 0.2);
+            animation: slideUp 0.3s ease;
         }
 
         /* Популярні посилання */
         .popular-box {
             margin-top: 40px;
             text-align: left;
-            background: #131926;
-            padding: 20px;
-            border-radius: 12px;
+            background: #111724;
+            padding: 24px;
+            border-radius: 16px;
             border: 1px solid #1f293d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         .popular-title {
-            font-size: 14px;
+            font-size: 13px;
             color: #5f759e;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            font-weight: 600;
         }
         .links-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 14px;
         }
         .fake-link {
             color: #00ffcc;
             text-decoration: none;
             cursor: pointer;
             font-size: 15px;
-            transition: color 0.2s;
+            padding: 8px 12px;
+            background: rgba(0, 255, 204, 0.02);
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
-        .fake-link:hover { color: #ff0055; text-decoration: underline; }
+        .fake-link:hover { 
+            color: #ffffff; 
+            background: rgba(0, 255, 204, 0.08);
+            border-color: rgba(0, 255, 204, 0.2);
+            padding-left: 16px;
+        }
 
-        /* Внутрішні сайти (результати) */
-        .site-page {
+        /* Контейнер для відображення сайтів (Етап 3 готовий до роботи) */
+        .site-view-container {
             display: none;
             width: 100%;
-            max-width: 800px;
-            margin-top: 40px;
-            background: #131926;
+            max-width: 900px;
+            margin-top: 30px;
+            background: #111724;
             border: 1px solid #1f293d;
-            border-radius: 12px;
-            padding: 30px;
-            animation: slideUp 0.4s ease;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
-        .site-page.active { display: block; }
+        .site-view-container.active {
+            display: flex;
+            flex-direction: column;
+            animation: pageShow 0.4s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+        }
+        .site-frame {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 8px;
+            background: #111724;
+        }
         .back-btn {
-            background: transparent;
-            border: 1px solid #5f759e;
-            color: #5f759e;
-            padding: 6px 12px;
+            background: #1f293d;
+            border: none;
+            color: #a4b3cd;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            align-self: flex-start;
+            transition: all 0.2s;
         }
-        .back-btn:hover { border-color: #00ffcc; color: #00ffcc; }
+        .back-btn:hover { background: #3399ff; color: #fff; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* АНІМАЦІЇ */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(-10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes pageShow {
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
     </style>
 </head>
 <body>
 
 <div class="browser-top">
     <div class="dots">
-        <div class="dot r"></div>
+        <div class="dot r" onclick="goBack()" title="Назад до пошуку"></div>
         <div class="dot y"></div>
         <div class="dot g"></div>
     </div>
-    <span style="color: #5f759e; font-size: 13px;">KocmocSecure_Protocol://secured_connection</span>
+    <span style="color: #5f759e; font-size: 13px; font-weight: 500;">SB_PROTOCOL://SECURE_CONNECTION_OK</span>
 </div>
 
 <div class="search-container" id="main-search">
-    <div class="logo">KOCMOC SEARCH</div>
+    <div class="logo">SB Search</div>
+    <div class="sub-logo">Secure Browser Engine</div>
     
     <div class="search-box">
-        <input type="text" id="query" class="search-input" placeholder="Введіть пошуковий запит...">
-        <button class="search-btn" onclick="startSearch()">ПОШУК</button>
+        <input type="text" id="query" class="search-input" placeholder="Введіть ключове слово для пошуку...">
+        <button class="search-btn" onclick="startSearch()">Пошук</button>
     </div>
 
     <div class="error-message" id="search-error">
-        ❌ Помилка: Немає такого пошукового запиту в базі даних даних! Спробуй популярні лінки знизу.
+        🚫 Результатів не знайдено. Цей запит відсутній у базі даних Secure Browser. Скористайтеся перевіреними посиланнями нижче.
     </div>
 
     <div class="popular-box">
-        <div class="popular-title">🔥 Популярні пошукові запити:</div>
+        <div class="popular-title">🔥 Швидкий доступ до мереж:</div>
         <div class="links-grid">
-            <span class="fake-link" onclick="openSite('gdps')">🌐 Мої сервери GDPS (Kocmoc/Sonik/Voilt)</span>
-            <span class="fake-link" onclick="openSite('maus')">🚜 Вся правда про Taschenratte 11 лвл</span>
-            <span class="fake-link" onclick="openSite('t22')">🎰 Симулятор казика: Як я повернув Т-22 ср.</span>
-            <span class="fake-link" onclick="openSite('acid')">🧪 Що таке Sulfuric Acid і чому лагає ПК?</span>
+            <span class="fake-link" onclick="openSite('gdps.html')">🌐 GDPS Network (Kocmoc / Sonik / Voilt)</span>
+            <span class="fake-link" onclick="openSite('maus.html')">🚜 Проект Taschenratte 11 LVL // Опис</span>
+            <span class="fake-link" onclick="openSite('t22.html')">🎰 Бліц-Архіви: Історія повернення Т-22 ср.</span>
+            <span class="fake-link" onclick="openSite('acid.html')">🧪 Екстрений Протокол "SULFURIC ACID"</span>
         </div>
     </div>
 </div>
 
-
-<div class="site-page" id="site-gdps">
+<div class="site-view-container" id="view-container">
     <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
-    <h1 style="color: #00ffcc;">Kocmoc Rever / Sonik Flayt / Voilt UA</h1>
-    <p style="color: #5f759e;">Офіційний сайт приватних серверів Geometry Dash 2.2</p>
-    <hr style="border-color: #1f293d;">
-    <p>Тут будується легендарний левел <b>Silent Nanste</b> в кастомному стилі 1.0 під трек Clubstep.</p>
-    <p><i>Статус хостингу: Запущено на макс швидкості. Чітери з noclip автоматично відлітають в бан.</i></p>
-</div>
-
-<div class="site-page" id="site-maus">
-    <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
-    <h1>Німецьке дерево: Taschenratte (11 рівень)</h1>
-    <p style="color: #ffbd2e;">Гілка розвитку надважких танків</p>
-    <hr style="border-color: #1f293d;">
-    <p><b>Опис об'єкта:</b> Кишеньковий щур, який важить як три Мауса. Борти жовті, але якщо СТ-1 стріляє топовим пробиттям, то шиє кожним другим пострілом.</p>
-    <p style="color: #ff5f56;"><b>Увага:</b> Ремонт коштує мільйони срібла. Якщо немає кредитів в ангарі — навіть не купуй.</p>
-</div>
-
-<div class="site-page" id="site-t22">
-    <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
-    <h1 style="color: #ffbd2e;">🎰 Секретна тактика Бліца: ТОП-0 Т-22 ср.</h1>
-    <hr style="border-color: #1f293d;">
-    <p>Історія з 2022 року, яка записана на вздутому пласкому кирпичі Realme C21Y.</p>
-    <p><b>Правило №1:</b> Ніколи, чуєш, ніколи не продавай цей танк на казик заради 50 голди. Тобі пощастило вибити його двічі, але третій раз танкові боги не пробачать!</p>
-    <p><i>Форма борту: Читерський зворотний скос. Танкує навіть Ягу Е-100 фугасом.</i></p>
-</div>
-
-<div class="site-page" id="site-acid">
-    <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
-    <h1 style="color: #ff5f56;">🧪 Інструкція: Що робити, якщо скаче світло</h1>
-    <hr style="border-color: #1f293d;">
-    <p>Якщо залізо починає видавати помилку 1099, Windows лагає, а з БЖ лунають крики "SULFURIC ACID", терміново виконуй алгоритм:</p>
-    <ul>
-        <li>Витягни шнур ПК з розетки повністю.</li>
-        <li>Не вір Біосу, який каже, що все ок.</li>
-        <li>Йди грати в телефон, поки мережу не попустить.</li>
-    </ul>
+    <iframe class="site-frame" id="browser-iframe" src=""></iframe>
 </div>
 
 <script>
-    // Функція пошуку
     function startSearch() {
-        const queryInput = document.getElementById('query').value.trim();
+        const queryInput = document.getElementById('query').value.trim().toLowerCase();
         const errorDiv = document.getElementById('search-error');
         
         if (queryInput === "") {
@@ -245,26 +285,42 @@
             return;
         }
 
-        // Твоя логіка: будь-який ручний пошук видає "НЕМАЄ ТАКОГО ЗАПИТУ"
-        errorDiv.style.display = "block";
+        if (queryInput.includes("gdps") || queryInput.includes("kocmoc") || queryInput.includes("geometry") || queryInput.includes("nanste")) {
+            openSite('gdps.html');
+        } else if (queryInput.includes("maus") || queryInput.includes("taschenratte") || queryInput.includes("маус") || queryInput.includes("щур")) {
+            openSite('maus.html');
+        } else if (queryInput.includes("t22") || queryInput.includes("т-22") || queryInput.includes("казик") || queryInput.includes("блиц")) {
+            openSite('t22.html');
+        } else if (queryInput.includes("acid") || queryInput.includes("світло") || queryInput.includes("пк")) {
+            openSite('acid.html');
+        } else {
+            errorDiv.style.display = "block";
+        }
     }
 
-    // Перехід по кліку на популярні посилання
-    function openSite(siteId) {
-        // Ховаємо пошук і помилку
+    function openSite(fileName) {
         document.getElementById('main-search').style.display = 'none';
         document.getElementById('search-error').style.display = 'none';
         
-        // Ховаємо всі інші відкриті сторінки на всяк випадок
-        const pages = document.querySelectorAll('.site-page');
-        pages.forEach(p => p.classList.remove('active'));
-
-        // Відкриваємо потрібний "сайт"
-        document.getElementById('site-' + siteId).classList.add('active');
+        const iframe = document.getElementById('browser-iframe');
+        iframe.src = fileName;
+        
+        document.getElementById('view-container').classList.add('active');
     }
 
-    // Кнопка назад
     function goBack() {
-        // Ховаємо сторінки сайтів
-        const pages = document.querySelectorAll('.site-page');
-        pages.
+        document.getElementById('view-container').classList.remove('active');
+        document.getElementById('browser-iframe').src = ""; 
+        document.getElementById('main-search').style.display = 'block';
+        document.getElementById('query').value = ""; 
+    }
+
+    document.getElementById('query').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            startSearch();
+        }
+    });
+</script>
+
+</body>
+</html>
