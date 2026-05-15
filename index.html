@@ -20,8 +20,19 @@
     <div class="logo">KOCMOC SEARCH</div>
     
     <div class="search-box">
-        <input type="text" id="query" class="search-input" placeholder="Введіть пошуковий запит...">
+        <input type="text" id="query" class="search-input" placeholder="Введіть пошуковий запит..." list="search-options" autocomplete="off">
         <button class="search-btn" onclick="startSearch()">ПОШУК</button>
+        
+        <datalist id="search-options">
+            <option value="GDPS сервери (Kocmoc, Sonik, Voilt)">
+            <option value="Тачки 2005 (NFS Most Wanted)">
+            <option value="Літо 2026 (Плани розробника)">
+            <option value="Танкова розмова (ТТ, СТ, ЛТ, ПТ, САУ)">
+            <option value="Секрети GD (Як спамити на C, W)">
+            <option value="🐱 КОТ просто КОТ (Спецагент)">
+            <option value="Налаштування ПК під 180Hz монітор">
+            <option value="План заздателя на 16.5.26">
+        </datalist>
     </div>
 
     <div class="error-message" id="search-error">
@@ -36,6 +47,8 @@
             <span class="fake-link" onclick="openSite('t22')">☀️ Скоро буде ЛІТО 2026 року</span>
             <span class="fake-link" onclick="openSite('acid')">🚜 Танкова розмова!</span>
             <span class="fake-link" onclick="openSite('gd-cheats')">🕹️ Секрети GD: Як правильно спамити</span>
+            <span class="fake-link" onclick="openSite('pc-tuning')">🎛️ Налаштування заліза під 180 FPS</span>
+            <span class="fake-link" onclick="openSite('tomorrow-plan')">📋 План заздателя на 16.5.26</span>
             <span class="fake-link" onclick="openSite('secret-cat')" style="color: #ff0055; font-weight: bold;">🐱 КОТ просто КОТ</span>
         </div>
     </div>
@@ -48,25 +61,26 @@
 
 <div class="site-page" id="site-maus">
     <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
-    <h1 style="color: #ffbd2e;">🏎️ Легендарні тачки 2005 року: NFS Most Wanted</h1>
+    <h1 style="color: #ffbd2e;">🏎️ Легендарні тачки 2005 року: Епоха NFS Most Wanted</h1>
     <hr style="border-color: #1f293d;">
     <ul>
-        <li><b>BMW M3 GTR (E46):</b> Головна ікона гри. Срібно-синій неон і унікальний вініл.</li>
-        <li><b>Toyota Supra:</b> Ідеальна під прокачку та заноси.</li>
-        <li><b>Porsche Cayman S:</b> Тачка Барона (№10 у списку). Швидка та маневрена.</li>
-        <li><b>Ford Mustang GT:</b> Чиста американська потужність Разора для жорстких таранних ударів.</li>
+        <li><b>BMW M3 GTR (E46):</b> Головна ікона гри. Срібно-синій неон, унікальний вініл і звук коробки передач. Машина Разора, яку ми повертаємо в кінці.</li>
+        <li><b>Toyota Supra:</b> Перша серйозна тачка в кар'єрі, на якій можна було розносити копів і проходити босів.</li>
+        <li><b>Porsche Cayman S:</b> Тачка Барона (№10 у списку). Швидка, маневрена та ідеальна для крутих поворотів.</li>
+        <li><b>Ford Mustang GT:</b> Чиста американська потужність, яка підходила для жорстких таранних ударів.</li>
     </ul>
 </div>
 
 <div class="site-page" id="site-t22">
     <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
     <h1 style="color: #ff0055;">☀️ Скоро буде ЛІТО 2026 року!</h1>
-    <p style="color: #5f759e;">Аналітика на 3 місяці повного кайфу</p>
+    <p style="color: #5f759e;">Аналітика та плани на 3 місяці повного кайфу</p>
     <hr style="border-color: #1f293d;">
+    <p><b>Що таке 3 місяці літа для розробника?</b> Це 92 дні свободи, коли можна створювати глобальні проекти від нудьги:</p>
     <ul>
-        <li><b>Червень:</b> Старт сезону. Сидимо в ПК на 180 герцах і пиляємо кастомний стиль 1.0 для <i>Silent Nanste</i>.</li>
-        <li><b>Липень:</b> Пік спеки. Піднімаємо онлайн на серверах Kocmoc, Sonik, Voilt.</li>
-        <li><b>Серпень:</b> Фінальний ривок. Створення нових неочікуваних проектів від нудьги.</li>
+        <li><b>Червень:</b> Старт сезону. Граємо на стабільних 180 герцах і допилюємо кастомний стиль 1.0 для <i>Silent Nanste</i>.</li>
+        <li><b>Липень:</b> Найкращий час, щоб розігнати онлайн на своїх GDPS серверах (Kocmoc, Sonik, Voilt).</li>
+        <li><b>Серпень:</b> Фінальний ривок. Створення нових неочікуваних оновлень та відпочинок перед осінню.</li>
     </ul>
 </div>
 
@@ -75,11 +89,11 @@
     <h1 style="color: #00ffcc;">🚜 Танкова розмова: Гайд по техніці під каву</h1>
     <hr style="border-color: #1f293d;">
     <ul>
-        <li><b>ТТ (Важкі танки):</b> Твоя головна броня і залізна стіна (як Маус чи ІС-7).</li>
-        <li><b>СТ (Середні танки):</b> Мобільні універсали (читерський Т-22 ср.).</li>
-        <li><b>ЛТ (Легкі танки):</b> Швидкі очі команди. Броні нуль, але швидкість рішає.</li>
-        <li><b>ПТ-САУ:</b> Головні криси кущів з дикою пробивною гарматою.</li>
-        <li><b>САУ (Арта):</b> Накидують фугаси через усю карту прямо за шиворот.</li>
+        <li><b>ТТ (Важкі танки):</b> Твоя головна броня. Створені, щоб продавлювати напрямки та танковати (як Маус чи ІС-7).</li>
+        <li><b>СТ (Середні танки):</b> Мобільні універсали. Можуть закрутити важкого танка або розібрати по КД (як Т-22 ср.).</li>
+        <li><b>ЛТ (Легкі танки):</b> Очі команди. Дають першокласний засвіт на шаленій швидкості. Броні нуль, але швидкість рішає.</li>
+        <li><b>ПТ-САУ:</b> Головні снайпери кущів. Мають дику пробивну гармату, яка шиє будь-яку броню.</li>
+        <li><b>САУ (Арта):</b> Накидують фугаси через усю карту прямо за шиворот. Весь ангар їх ненавидить, але кабіни вони ламають знатно.</li>
     </ul>
 </div>
 
@@ -87,7 +101,31 @@
     <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
     <h1 style="color: #00ffcc;">🕹️ Гайд по спаму: Секрети стилю 1.0</h1>
     <hr style="border-color: #1f293d;">
-    <p>Ліва рука лягає на клавіші <b>C, W та Space</b>. Права — чітко контролює мишку. Чергування рук розганяє швидкість до 15+ CPS!</p>
+    <p><b>Silent Nanste на зв'язку:</b> Постановка рук для хардкору під Clubstep: ліва рука лягає на клавіші <b>C, W та Space (пробіл)</b>. Права — на мишку. Чергування рук розганяє швидкість до 15+ CPS без чітів!</p>
+</div>
+
+<div class="site-page" id="site-pc-tuning">
+    <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
+    <h1 style="color: #ffbd2e;">🎛️ Оптимізація ПК під 180Hz монітори</h1>
+    <hr style="border-color: #1f293d;">
+    <p>База по налаштуванню твоєї GTX 1660 Super та процесора i5, щоб спам-кліки реєструвалися миттєво:</p>
+    <ul>
+        <li><b>Екран:</b> Переконайся в налаштуваннях Windows, що виставлено саме 180 герц. Без цього Geometry Dash буде лагати.</li>
+        <li><b>MSI Afterburner:</b> Налаштуй кулери, щоб залізо тримало низькі температури під час білдингу.</li>
+        <li><b>ОЗУ:</b> 32GB DDR4 дозволяє тримати відкритими гру, Discord та браузер одночасно.</li>
+    </ul>
+</div>
+
+<div class="site-page" id="site-tomorrow-plan">
+    <button class="back-btn" onclick="goBack()">← Назад до пошуку</button>
+    <h1 style="color: #ff0055;">📋 Секретні плани на 16.5.26 (Субота)</h1>
+    <hr style="border-color: #1f293d;">
+    <ol>
+        <li>Прокинутися без будильника, бо субота.</li>
+        <li>Перевірити онлайн на своїх GDPS серверах (Kocmoc, Sonik, Voilt).</li>
+        <li>Запустити новий неоновий браузер KOCMOC SEARCH і потестити варіанти пошуку.</li>
+        <li>Поставити новий рекорд спаму в <i>Silent Nanste</i>.</li>
+    </ol>
 </div>
 
 <div class="site-page" id="site-secret-cat" style="text-align: center;">
@@ -96,9 +134,9 @@
     <h1 style="color: #ff0055; font-size: 32px; letter-spacing: 2px; margin-bottom: 5px;">🚨 ОБЕРЕЖНО! 🚨</h1>
     <p style="color: #5f759e; margin-bottom: 20px; font-weight: bold; text-transform: uppercase;">Вас вирахував Спецагент Котовський</p>
     
-    <img src="кот-мигалка-fbi-fbi.gif" alt="FBI CAT" style="max-width: 100%; height: auto; border-radius: 15px; border: 3px solid #ff0055; box-shadow: 0 0 30px #ff0055;">
+    <img src="кот-мигалка-fbi-fbi.gif" alt="FBI CAT" style="max-width: 100%; height: 280px; object-fit: contain; border-radius: 15px; border: 3px solid #ff0055; box-shadow: 0 0 30px #ff0055;">
     
-    <p style="color: #ffbd2e; font-weight: bold; margin-top: 15px; font-size: 18px;">ВІН ЗНАЄ, ЩО ТИ НЕ СПИШ О 23:30!</p>
+    <p style="color: #ffbd2e; font-weight: bold; margin-top: 15px; font-size: 18px;">ВІН ЗНАЄ, ЩО ТИ НЕ СПИШ ОБ ТАКІЙ ПОДІ!</p>
 </div>
 
 <script src="script.js"></script>
