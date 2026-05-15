@@ -16,24 +16,24 @@ function startSearch() {
         openIframe('GDRP.html');
     } 
     // 2. ПЕРЕВІРКА НА ТАЧКИ 2005 (NFS)
-    else if (queryInput.includes("тачк") || queryInput.includes("машин") || queryInput.includes("2005") || queryInput.includes("nfs") || queryInput.includes("most wanted") || queryInput.includes("bmw")) {
+    else if (queryInput.includes("тачк") || queryInput.includes("машин") || queryInput.includes("2005") || queryInput.includes("nfs") || queryInput.includes("bmw")) {
         openSite('maus');
     } 
     // 3. ПЕРЕВІРКА НА ЛІТО 2026
-    else if (queryInput.includes("літо") || queryInput.includes("лето") || queryInput.includes("2026") || queryInput.includes("черв") || queryInput.includes("лип")) {
+    else if (queryInput.includes("літо") || queryInput.includes("лето") || queryInput.includes("2026")) {
         openSite('t22');
     } 
-    // 4. ПЕРЕВІРКА НА ТАНКОВУ РОЗМОВУ (ТТ, ЛТ, СТ)
-    else if (queryInput.includes("танк") || queryInput.includes("тт") || queryInput.includes("лт") || queryInput.includes("ст") || queryInput.includes("пт") || queryInput.includes("сау")) {
+    // 4. ПЕРЕВІРКА НА ТАНКИ
+    else if (queryInput.includes("танк") || queryInput.includes("тт") || queryInput.includes("лт") || queryInput.includes("ст") || queryInput.includes("пт")) {
         openSite('acid');
     } 
     // 5. ПЕРЕВІРКА НА ЧІТИ ГД
-    else if (queryInput.includes("чіт") || queryInput.includes("чит") || queryInput.includes("спам") || queryInput.includes("cheat")) {
+    else if (queryInput.includes("чіт") || queryInput.includes("чит") || queryInput.includes("спам")) {
         openSite('gd-cheats');
     }
-    // 6. ПЕРЕВІРКА НА МЕДІА
-    else if (queryInput.includes("стрім") || queryInput.includes("стрим") || queryInput.includes("медіа") || queryInput.includes("media")) {
-        openSite('kosmos-media');
+    // 6. ПАСХАЛКА: КОТ ПРОСТО КОТ (Нова логіка)
+    else if (queryInput.includes("кот") || queryInput.includes("кіт") || queryInput.includes("fbi") || queryInput.includes("агент")) {
+        openSite('secret-cat');
     }
     // ПОМИЛКА
     else {
