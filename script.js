@@ -3,7 +3,6 @@
 // ========================================== //
 
 function startSearch() {
-    // Беремо текст із пошуку та чистимо його
     const queryOriginal = document.getElementById('query').value.trim();
     const queryInput = queryOriginal.toLowerCase();
     const errorDiv = document.getElementById('search-error');
@@ -13,8 +12,8 @@ function startSearch() {
         return;
     }
 
-    // 1. ПЕРЕВІРКА НА GDPS
-    if (queryInput.includes("gdps") || queryInput.includes("kocmoc") || queryInput.includes("geometry") || queryInput.includes("gdrp") || queryInput.includes("nanste")) {
+    // 1. ПЕРЕВІРКА НА GDPS ТА СЕРВЕРИ
+    if (queryInput.includes("gdps") || queryInput.includes("kocmoc") || queryInput.includes("geometry") || queryInput.includes("gdrp") || queryInput.includes("nanste") || queryInput.includes("сервер")) {
         openIframe('GDRP.html');
     } 
     // 2. ПЕРЕВІРКА НА ТАЧКИ 2005 (NFS)
@@ -26,7 +25,7 @@ function startSearch() {
         openSite('t22');
     } 
     // 4. ПЕРЕВІРКА НА ТАНКИ
-    else if (queryInput.includes("танк") || queryInput.includes("тт") || queryInput.includes("лт") || queryInput.includes("ст") || queryInput.includes("пт")) {
+    else if (queryInput.includes("танк") || queryInput.includes("тт") || queryInput.includes("лт") || queryInput.includes("ст") || queryInput.includes("пт") || queryInput.includes("сау")) {
         openSite('acid');
     } 
     // 5. ПЕРЕВІРКА НА ЧІТИ ГД
@@ -42,21 +41,16 @@ function startSearch() {
         openSite('pc-tuning');
     }
     // 8. ПЛАН НА ЗАВТРА
-    else if (queryInput.includes("план") || queryInput.includes("завтра") || queryInput.includes("субот")) {
+    else if (queryInput.includes("план") || queryInput.includes("завтра") || queryInput.includes("субот") || queryInput.includes("16")) {
         openSite('tomorrow-plan');
     }
     
     // ========================================== //
-    //  ГЛОБАЛЬНИЙ ІНТЕРНЕТ-ПОШУК (ЯКЩО СЕКРЕТІВ НЕМАЄ) //
+    //   ГЛОБАЛЬНИЙ РЕАЛЬНИЙ ПОШУК (ЯКЩО НЕ СЕКРЕТ) //
     // ========================================== //
     else {
-        errorDiv.style.display = "none"; // Ховаємо помилку, бо ми знайшли вихід в інтернет!
-        
-        // Створюємо посилання на Google з нашим запитом
-        // Користувач ввів запит, і його викине на сторінку пошуку Google у новій вкладці
+        errorDiv.style.display = "none";
         const googleSearchUrl = "https://www.google.com/search?q=" + encodeURIComponent(queryOriginal);
-        
-        // Відкриваємо справжній пошук Google
         window.open(googleSearchUrl, '_blank'); 
     }
 }
