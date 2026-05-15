@@ -189,3 +189,29 @@ body {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes pageShow { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+/* Стилі для вікна відображення зовнішніх файлів */
+.site-view-container {
+    display: none;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 40px;
+    background: #131926;
+    border: 1px solid #1f293d;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+}
+.site-view-container.active {
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.4s ease forwards;
+}
+.site-frame {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 8px;
+    background: #000000;
+}
