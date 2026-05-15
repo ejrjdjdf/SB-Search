@@ -3,7 +3,9 @@
 // ========================================== //
 
 function startSearch() {
-    const queryInput = document.getElementById('query').value.trim().toLowerCase();
+    // Беремо текст із пошуку та чистимо його
+    const queryOriginal = document.getElementById('query').value.trim();
+    const queryInput = queryOriginal.toLowerCase();
     const errorDiv = document.getElementById('search-error');
     
     if (queryInput === "") {
@@ -31,13 +33,31 @@ function startSearch() {
     else if (queryInput.includes("чіт") || queryInput.includes("чит") || queryInput.includes("спам")) {
         openSite('gd-cheats');
     }
-    // 6. ПАСХАЛКА: КОТ ПРОСТО КОТ (Нова логіка)
+    // 6. ПАСХАЛКА: КОТ ПРОСТО КОТ
     else if (queryInput.includes("кот") || queryInput.includes("кіт") || queryInput.includes("fbi") || queryInput.includes("агент")) {
         openSite('secret-cat');
     }
-    // ПОМИЛКА
+    // 7. НАЛАШТУВАННЯ ПК
+    else if (queryInput.includes("герц") || queryInput.includes("fps") || queryInput.includes("налашт") || queryInput.includes("afterburner") || queryInput.includes("180")) {
+        openSite('pc-tuning');
+    }
+    // 8. ПЛАН НА ЗАВТРА
+    else if (queryInput.includes("план") || queryInput.includes("завтра") || queryInput.includes("субот")) {
+        openSite('tomorrow-plan');
+    }
+    
+    // ========================================== //
+    //  ГЛОБАЛЬНИЙ ІНТЕРНЕТ-ПОШУК (ЯКЩО СЕКРЕТІВ НЕМАЄ) //
+    // ========================================== //
     else {
-        errorDiv.style.display = "block";
+        errorDiv.style.display = "none"; // Ховаємо помилку, бо ми знайшли вихід в інтернет!
+        
+        // Створюємо посилання на Google з нашим запитом
+        // Користувач ввів запит, і його викине на сторінку пошуку Google у новій вкладці
+        const googleSearchUrl = "https://www.google.com/search?q=" + encodeURIComponent(queryOriginal);
+        
+        // Відкриваємо справжній пошук Google
+        window.open(googleSearchUrl, '_blank'); 
     }
 }
 
